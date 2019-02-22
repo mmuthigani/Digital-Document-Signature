@@ -1,1 +1,136 @@
-theme: jekyll-theme-cayman
+/* Made By VEDANG */
+
+// Fonts
+var fonts= ["Cute Font","Abel","Actor","Alfa Slab One","Thasadith","ZCOOL KuaiLe","IBM Plex Sans"];
+
+var day=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+var month=["January","Feburary","March","April","May","June","July","August","September","October","November","December"];  
+
+var hours = ['12','01','02','03','04','05','06','07','08','09','10','11','12','01','02','03','04','05','06','07','08','09','10','11','12'];
+
+var sec = ['00','01','02','03','04','05','06','07','08','09'];
+var min = ['00','01','02','03','04','05','06','07','08','09'];
+
+// Background images and colors
+var setBg =[
+     "url(https://firebasestorage.googleapis.com/v0/b/proj-d4ee8.appspot.com/o/clouds-conifer-daylight-371589.jpg?alt=media&token=1fcbad58-846d-4bc5-9062-f0d46f7d8e2f)",
+     "url(http://0xpl.000webhostapp.com/bg1.jpg)",
+   
+    "url(https://firebasestorage.googleapis.com/v0/b/proj-d4ee8.appspot.com/o/bloom-blooming-blossom-462118.jpg?alt=media&token=714a94ac-5fe9-4697-831c-b9bcf84371f5)",
+    "blue","black","green","red","orange"
+    ];
+    
+function load_comp(){
+alert("*Image loading may take time.\n*Please comment any suggestions or errors");
+    window.addEventListener("resize", handle_resize);
+    
+    handle_resize();
+}
+
+
+function setd(){
+var d = new Date();
+
+function getMin(){
+    var sc = min[d.getMinutes ()];
+    if(sc=="undefined"||sc==undefined){
+        return d.getMinutes();
+    }else{
+        return sc;
+        
+    }
+}
+function getSec(){
+    var cc =sec[d.getSeconds()];
+    if(cc=="undefined"||cc==undefined){
+        return d.getSeconds();
+    }else{
+        return cc;
+        
+    }
+}
+//function to show AM/PM
+function getAmPm(){
+    var hrs= d.getHours();
+    if(hrs>=12){
+        return "PM";
+    }
+    else if(hrs==0){
+        return "AM";
+    }
+    else{
+        return "AM";
+    }
+}
+
+//Main clock
+ document.getElementById("output").innerHTML =
+  hours[d.getHours()]
+  +':'
+  +getMin()
+  +':'
+  +getSec()
+  +'<span style=font-size:15px>'
+  +getAmPm()
+  +'</span>'
+  +'<br><div>'
+/* next line */
+  +day[d.getDay()]
+  +', '
+  +
+  +d.getDate()
+  + ' ' 
+  +month[d.getMonth()]
+  +' '
+  +d.getFullYear()
+  +'</div>';
+ 
+//refresh date after every 1 sec
+
+setTimeout(setd,1000);
+
+}
+
+//to change background on clicking
+
+var xi=1;
+function change_bg(){
+    
+  if(xi<=2){ 
+  document.getElementById("bdy").style.backgroundImage =setBg[xi];
+  xi++;
+  }else if(xi==4 ||xi==3 ||xi==7||xi==5||xi==6){
+      document.getElementById("bdy").style.backgroundImage ="url()";
+      document.getElementById("bdy").style.backgroundColor=setBg[xi];
+      xi++;
+  }
+  else {
+      xi=0;
+      change_bg();
+  }
+}
+function df(){
+    document.getElementById("bdy").style.backgroundImage =setBg[0];
+    document.getElementById("output").style.fontFamily=fonts[0]
+}
+var ft = 1;
+
+function change_font(){
+   if(ft<=6){ 
+    document.getElementById("output").style.fontFamily=fonts[ft];
+    ft++;
+   }else{
+       ft=0;
+       change_font();
+   }
+}
+function  handle_resize(){
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    if(w<=400){
+        document.getElementById("output").style.width = "90%";
+    }else{
+         document.getElementById("output").style.width = "50%";
+    }
+}
